@@ -69,7 +69,28 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   tags = var.tags
 }
 
+resource "azurerm_managed_disk" "assignment1-disk-linux" {
+  for_each            = var.linux_name
+  name                 = "${each.key}-datadisk"
+  location             = var.location
+  resource_group_name  = var.rg_name
+  storage_account_type = "Standard_LRS"
+  create_option        = "Empty"
+  disk_size_gb         = 30
+  tags = var.tags
+}
 
+resource "azurerm_virtual_machine_data_disk_attachment" "assignment1-attach-linux" {
+  for_each           = var.linux_name
+  virtual_machine_id = azurerm_linux_virtual_machine.linux_vm[each.key].id
+  managed_disk_id    = azurerm_managed_disk.assignment1-disk-linux[each.key].id
+  lun                = 0
+  caching            = "ReadWrite"
+  depends_on = [
+    azurerm_managed_disk.assignment1-disk-linux,
+    azurerm_linux_virtual_machine.linux_vm
+  ]
+}
 
 
 # resource "azurerm_backup_protected_vm" "vm1" {

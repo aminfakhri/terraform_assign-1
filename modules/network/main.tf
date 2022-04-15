@@ -55,6 +55,30 @@ resource "azurerm_network_security_group" "assignment1-nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
+security_rule {
+    name                       = "rule4"
+    priority                   = 104
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = 80
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+security_rule {
+    name                       = "rule5"
+    priority                   = 105
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = 443
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
   
 
   tags = var.tags

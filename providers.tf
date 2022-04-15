@@ -14,9 +14,9 @@ provider "azurerm" {
 
 locals {
   common_tags = {
-    Project         = "Automation project - Assignment 1 "
+    Project         = "Automation project - Assignment 2 "
     Name            = "Amin Fakhri"
-    ExpirationDate = "2022-03-08"
+    ExpirationDate = "2022-04-19"
     Environment  = "Lab"
   }
 }

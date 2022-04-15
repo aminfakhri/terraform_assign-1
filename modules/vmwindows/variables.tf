@@ -37,12 +37,6 @@ variable "rg_name"{
 }
 variable "tags" {
 
-   project = "Automation Project - Assignment 1"
-   Nmae    = Amin.Fakhri
-   ExpirartionDate  = "2022-03-08"
-   Enviorment       = "Lab"
-
-
 }
 
 variable "subnet_id" {

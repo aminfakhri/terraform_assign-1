@@ -4,10 +4,9 @@ resource "null_resource" "linux_provisioner" {
     azurerm_linux_virtual_machine.linux_vm
   ]
 
-  provisioner "remote-exec" {
-    inline = [
-      "hostname"
-    ]
+  provisioner "local-exec" {
+    command = "sleep 10; ansible-playbook groupX-playbook.yaml; echo hostname"
+
 
     connection {
       type        = "ssh"

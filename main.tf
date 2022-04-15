@@ -51,28 +51,28 @@ module "vmwindows" {
 module "rgroup" {
     source = "./modules/rgroup"
     location = "canadaCentral"
-    rg_name = "assignment1-rg"
+    rg_name = "assignment2-rg"
     tags = local.common_tags
 }
 
-module "datadisk" {
-    source = "./modules/datadisk"
-    location = module.rgroup.location_name
-    rg_name = "assignment1-rg"
-    linux_name = module.vmlinux.linux_vm_hostname
-    linux_id   = module.vmlinux.linux_vm_id
+#module "datadisk" {
+    #source = "./modules/datadisk"
+    #location = module.rgroup.location_name
+    #rg_name = "assignment2-rg"
+    #linux_name = module.vmlinux.linux_vm_hostname
+    #linux_id   = module.vmlinux.linux_vm_id
     # linux_datadisk1_name = "assignment1-datadisk1-linux"
     # linux_datadisk2_name = "assignment1-datadisk2-linux"
-    win_datadisk3_name = "assignment1-datadisk3-win"
+    #win_datadisk3_name = "assignment1-datadisk3-win"
     # linux_vm1_id = module.vmlinux.linux_vm_id
     # linux_vm2_id = module.vmlinux.linux_vm2_id
-    windows_id = module.vmwindows.Windows_VM_Id
-    tags = local.common_tags
-    depends_on =[
-      module.vmwindows,
-      module.vmlinux
-    ]
-}
+    #windows_id = module.vmwindows.Windows_VM_Id
+    #tags = local.common_tags
+    #depends_on =[
+    #module.vmwindows,
+    # module.vmlinux
+    #]
+#}
 
 module "loadbalancer" {
     source = "./modules/loadbalancer"

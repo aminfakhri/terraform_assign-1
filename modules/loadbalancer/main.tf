@@ -30,8 +30,8 @@ resource "azurerm_network_interface_backend_address_pool_association" "assignmen
 resource "azurerm_lb_probe" "assignment1_lb_probe" {
   resource_group_name = var.rg_name
   loadbalancer_id     = azurerm_lb.assignment1_lb.id
-  name                = "ssh-running-probe"
-  port                = 22
+  name                = "http-running-probe"
+  port                = 80
 }
 
 resource "azurerm_lb_rule" "assignment1_lb_rule" {
@@ -39,8 +39,8 @@ resource "azurerm_lb_rule" "assignment1_lb_rule" {
   loadbalancer_id                = azurerm_lb.assignment1_lb.id
   name                           = "LBRule"
   protocol                       = "Tcp"
-  frontend_port                  = 22
-  backend_port                   = 22
+  frontend_port                  = 80
+  backend_port                   = 80
   frontend_ip_configuration_name = azurerm_lb.assignment1_lb.frontend_ip_configuration[0].name
 }
 
